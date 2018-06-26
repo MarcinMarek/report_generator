@@ -17,9 +17,9 @@ country = country/state recorded
 is_ok = Is it expected to read based on picture's quality
 plr = plate read
 ctr = countr/state read
-conf3 = Confidance level combined
-conf1 = Confidance level of Plate guessing
-conf2 = Confidance level of Country/State guessing
+conf3 = Confidence level combined
+conf1 = Confidence level of Plate guessing
+conf2 = Confidence level of Country/State guessing
 '''
 # Exclude images where GT == N/A and ARH == N/A
 raw.dropna(inplace=True, how='all', subset=['plate', 'country', 'plr', 'ctr'])
@@ -423,7 +423,7 @@ def create_pdf(arh, gc, inv, title = 'CARACTERES'):
     p1 = plt.bar(ind, succ, width, color='#CCFF90', edgecolor='black', linewidth=0.5)
     p2 = plt.bar(ind, fail, width, bottom=succ, color='#ff8a80', edgecolor='black', linewidth=0.5)
 
-    plt.title('Distribuição dos graus de confinança os Caracteres')
+    plt.title('Distribuição dos graus de confinança os {}'.format(title))
     plt.xticks(ind, tuple(gct_pdf_wo_colsum['GC\nLevels']))
     plt.yticks([0, 5, 10, 15, 20, 25, 30], ['0%', '5%', '10%', '15%', '20%', '25%', '30%'])
     plt.grid(axis='y')
@@ -489,7 +489,7 @@ def create_pdf(arh, gc, inv, title = 'CARACTERES'):
     fp = tuple(gct_inv_pdf["% FP\n(9)"])
     rects2 = ax.bar([i + width + 0.03 for i in ind], fp, width, color='#ff8a80', edgecolor='black', linewidth=0.5)
 
-    ax.set_title('KPI Automação e FP - Caracteres')
+    ax.set_title('KPI Automação e FP - {}'.format(title))
     ax.set_xticks([(i + width / 2) for i in ind])
     ax.set_xticklabels(('0%', '10%', '20%', '30%', '40%', '50%', '60', '70', '80', '90'))
     ax.set_yticks([0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 108], ["0%", "10%", "20%", "30%", "40%", "50%",
